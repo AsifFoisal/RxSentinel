@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+/* RxSentinel design tokens — one system for every component.
+   Deep ink-navy + teal brand accent; risk colours match the engine:
+   Low emerald / Warning amber / Unknown slate / High red. */
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sora), var(--font-inter), ui-sans-serif,
+    system-ui, sans-serif;
+
+  /* Ink navy scale */
+  --color-ink-50: #f2f6f9;
+  --color-ink-100: #e4ebf1;
+  --color-ink-200: #c3d2de;
+  --color-ink-300: #8ba3b8;
+  --color-ink-400: #5b7a99;
+  --color-ink-500: #3d5a7d;
+  --color-ink-600: #2b4365;
+  --color-ink-700: #1f3350;
+  --color-ink-800: #16263f;
+  --color-ink-900: #0f1b2d;
+  --color-ink-950: #0a1120;
+
+  /* Teal brand accent */
+  --color-brand-50: #f0fdfa;
+  --color-brand-100: #ccfbf1;
+  --color-brand-200: #99f6e4;
+  --color-brand-500: #14b8a6;
+  --color-brand-600: #0d9488;
+  --color-brand-700: #0f766e;
+  --color-brand-800: #115e59;
+
+  /* Risk colours */
+  --color-risk-low: #059669;
+  --color-risk-warning: #d97706;
+  --color-risk-unknown: #64748b;
+  --color-risk-high: #dc2626;
+
+  --shadow-soft:
+    0 1px 2px rgb(10 17 32 / 0.05), 0 8px 24px -12px rgb(10 17 32 / 0.18);
+  --shadow-lift:
+    0 2px 4px rgb(10 17 32 / 0.06), 0 16px 32px -12px rgb(10 17 32 / 0.25);
+
+  --animate-fade-up: fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ink-50 font-sans text-ink-900 antialiased;
+  }
+
+  ::selection {
+    background: var(--color-brand-100);
+    color: var(--color-ink-900);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: 2px;
+  }
+}
+
+/* Safe-area insets for the mobile bottom bar (iPhone home indicator etc.). */
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@utility pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* FileDrop conic-arc rotation around the cloud tile while uploading. */
+@keyframes file-drop-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
